@@ -47,18 +47,22 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = $_POST["username"];
             $password = $_POST["password"];
-            //kiem tra username co bi trung khong
-            $sql = "SELECT * FROM user_info WHERE username = '$username' ";
-            if (mysqli_num_rows(mysqli_query($conn, $sql)) > 0){
+            //kiểm tra xem username đã tồn tại hay chưa
+            $query = $conn->prepare("SELECT * FROM user_info WHERE username = ?");
+            $query->bind_param("s", $username);
+            $query->execute();
+            $result = $query->get_result();
+            if ($result->num_rows > 0){
                 echo "<script>if (confirm('Đăng ký thất bại. Tài khoản đã tồn tại.')){
                     window.location.replace('http://localhost:8080/src/register.php');
                 }else{
                     window.location.replace('http://localhost:8080/src/register.php');
                 }</script>";
             }else{
-                $hashPass= hash('sha256',$password);
-                $sql = "INSERT INTO user_info (username,password) VALUES ('$username','$hashPass')";
-                if (mysqli_query($conn, $sql)) {
+                $hashPass = hash('sha256', $password);
+                $query = $conn->prepare("INSERT INTO user_info (username, password) VALUES (?, ?)");
+                $query->bind_param("ss", $username, $hashPass);
+                if ($query->execute()) {
                     echo "<script>if (confirm('Đăng ký tài khoản thành công. Bạn có muốn chuyển đến trang đăng nhập ?')){
                         window.location.replace('http://localhost:8080/');
                     }else{
@@ -68,7 +72,6 @@
                     echo "<script>alert('Đăng ký thất bại: " . mysqli_error($conn). "');</script>";
                 }
             }
-
         }
         mysqli_close($conn);
     ?>
