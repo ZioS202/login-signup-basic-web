@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) >0) {
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
+        // session_start();
+        // $_SESSION['loggedin'] = true;
+        // $_SESSION['username'] = $username;
         header("Location: success.php");
         exit();
     } else {

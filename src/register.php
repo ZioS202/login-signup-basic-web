@@ -65,7 +65,6 @@
                     }</script>";
                 } else {
                     echo "<script>alert('Đăng ký thất bại: " . mysqli_error($conn). "');</script>";
-                    
                 }
             }
 
