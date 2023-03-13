@@ -49,14 +49,15 @@
             $password = $_POST["password"];
             //kiem tra username co bi trung khong
             $sql = "SELECT * FROM user_info WHERE username = '$username' ";
-            if (mysqli_num_rows(mysqli_query($conn, $sql)) >0){
+            if (mysqli_num_rows(mysqli_query($conn, $sql)) > 0){
                 echo "<script>if (confirm('Đăng ký thất bại. Tài khoản đã tồn tại.')){
                     window.location.replace('http://localhost:8080/src/register.php');
                 }else{
                     window.location.replace('http://localhost:8080/src/register.php');
                 }</script>";
             }else{
-                $sql = "INSERT INTO user_info (username,password) VALUES ('$username','$password')";
+                $hashPass= hash('sha256',$password);
+                $sql = "INSERT INTO user_info (username,password) VALUES ('$username','$hashPass')";
                 if (mysqli_query($conn, $sql)) {
                     echo "<script>if (confirm('Đăng ký tài khoản thành công. Bạn có muốn chuyển đến trang đăng nhập ?')){
                         window.location.replace('http://localhost:8080/');

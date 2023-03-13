@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS user_info (
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
-
-INSERT INTO user_info (username, password) VALUES ('admin', 'rootpass');
+-- admin/rootpass
+INSERT INTO user_info (username, password) VALUES ('admin', '5012f5182061c46e57859cf617128c6f70eddfba4db27772bdede5a039fa7085');

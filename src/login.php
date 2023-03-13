@@ -15,11 +15,10 @@ if (!$conn) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-
+    $hashPass= hash('sha256',$password);
     // Kiểm tra thông tin đăng nhập
-    $sql = "SELECT * FROM user_info WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM user_info WHERE username = '$username' AND password = '$hashPass'";
     $result = mysqli_query($conn, $sql);
-
     if (mysqli_num_rows($result) >0) {
         // session_start();
         // $_SESSION['loggedin'] = true;
