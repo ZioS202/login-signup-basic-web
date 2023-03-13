@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    // Kiểm tra xem người dùng đã đăng nhập hay chưa
+    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+        echo "<script>if (confirm('Vui lòng đăng nhập')){
+            window.location.replace('http://localhost:8080/')
+        }else{
+            window.location.replace('http://localhost:8080/')
+        }</script>";
+        echo "fail";
+        exit;
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,22 +52,6 @@
         <h2>Chào mừng đến với site này. </h2>
         <h3><a href='http://localhost:8080/src/logout.php'>Đăng xuất</a></h3>
     </section>";
-    <?php
-        // session_start();
-        // // Kiểm tra xem người dùng đã đăng nhập hay chưa
-        // if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        //     echo "<script>if (confirm('Vui lòng đăng nhập')){
-        //         window.location.replace('http://localhost:8080/')
-        //     }else{
-        //         window.location.replace('http://localhost:8080/')
-        //     }</script>";
-        // }else{
-        //     echo "<h1>Thông báo</h1>
-        //         <section>
-        //             <h2>Chào mừng đến với site này. </h2>
-        //             <h3><a href='http://localhost:8080/src/logout.php'>Đăng xuất</a></h3>
-        //         </section>";
-        // }       
-    ?>   
 </body>
 </html>
+

@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Kết nối đến MySQL
 $servername = "db";
 $username = "root";
@@ -20,9 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM user_info WHERE username = '$username' AND password = '$hashPass'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) >0) {
-        // session_start();
-        // $_SESSION['loggedin'] = true;
-        // $_SESSION['username'] = $username;
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
         header("Location: success.php");
         exit();
     } else {
