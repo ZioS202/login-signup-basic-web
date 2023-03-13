@@ -32,12 +32,13 @@ services:
     image: mysql:5.7
     container_name: db
     environment:
-      MYSQL_DATABASE: myapp
+      MYSQL_DATABASE: users
       MYSQL_ROOT_PASSWORD: mysecretpassword
     ports:
       - "3307:3306"
     volumes:
       - dbdata:/var/lib/mysql
+      - ./dbdata/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
 networks:

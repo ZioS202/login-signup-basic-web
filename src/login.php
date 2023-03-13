@@ -1,10 +1,9 @@
 <?php
-session_start();
 // Kết nối đến MySQL
 $servername = "db";
 $username = "root";
 $password = "mysecretpassword";
-$dbname = "myapp";
+$dbname = "users";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -22,14 +21,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) >0) {
-        // Nếu thông tin đăng nhập đúng, chuyển hướng đến trang chính
-        header("Location: success.html");
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        header("Location: success.php");
         exit();
     } else {
-        // Nếu thông tin đăng nhập sai, hiển thị thông báo lỗi
-        echo "Tên đăng nhập hoặc mật khẩu không đúng.";
+        echo "<script>if (confirm('Tên đăng nhập hoặc mật khẩu không đúng.')){
+            window.history.back();
+        }else{
+            window.history.back();
+        }</script>";
     }
 }
-
 mysqli_close($conn);
 ?>
