@@ -19,13 +19,13 @@ Cuối cùng là truy cập `localhost:8080` (trên browser)
 
 - Giao diện đăng nhập 
 
-    ![](https://i.imgur.com/0oITw6F.png)
+    ![](https://i.imgur.com/jPQJhDt.png)
 
     
 - Giao diện homepage
 
-    ![](https://i.imgur.com/jPQJhDt.png)
-
+    
+    ![](https://i.imgur.com/0oITw6F.png)
 
 - Giao diện đăng ký
 
