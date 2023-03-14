@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-  login_register_app:
+  login_register:
     build:
       context: .
       dockerfile: ./php/Dockerfile
-    image: login_register_img
-    container_name: login_register_app
+    image: login_register
+    container_name: login_register
     restart: unless-stopped
     volumes:
       - ./:/var/www
