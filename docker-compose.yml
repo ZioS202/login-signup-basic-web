@@ -1,15 +1,18 @@
 version: '3'
 
 services:
-  app:
+  login_register_app:
     build:
       context: .
       dockerfile: ./php/Dockerfile
-    image: login_sigup_app
-    container_name: app
+    image: login_register_img
+    container_name: login_register_app
     restart: unless-stopped
     volumes:
       - ./:/var/www
+    depends_on:
+      - webserver
+      - db
     networks:
       - app-network
   webserver:
@@ -24,8 +27,6 @@ services:
     volumes:
       - ./:/var/www
       - ./nginx:/etc/nginx/conf.d
-    depends_on:
-      - app
     networks:
       - app-network
   db:
@@ -38,7 +39,7 @@ services:
       - "3307:3306"
     volumes:
       - dbdata:/var/lib/mysql
-      - ./dbdata/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
 networks:

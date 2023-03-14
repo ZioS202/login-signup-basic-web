@@ -1,8 +1,6 @@
 FROM php:7.3-fpm-alpine
 WORKDIR /var/www
-RUN apk update && apk add \
-    build-base 
-RUN docker-php-ext-install pdo_mysql
+RUN apk update
 RUN docker-php-ext-install mysqli
 RUN addgroup -g 1000 -S www && \
     adduser -u 1000 -S www -G www

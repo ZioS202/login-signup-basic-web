@@ -31,23 +31,18 @@
     </form>
     <script src="validateForm.js"></script>
     <?php
-        // Kết nối đến MySQL
         $servername = "db";
         $username = "root";
         $password = "mysecretpassword";
         $dbname = "users";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-        // Kiểm tra kết nối
         if (!$conn) {
             die("Kết nối đến MySQL thất bại: " . mysqli_connect_error());
         }
-        // Xử lý thông tin đăng nhập
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = $_POST["username"];
             $password = $_POST["password"];
-            //kiểm tra xem username đã tồn tại hay chưa
             $query = $conn->prepare("SELECT * FROM user_info WHERE username = ?");
             $query->bind_param("s", $username);
             $query->execute();

@@ -3,27 +3,23 @@ function validateForm(){
     const password = document.getElementById("password").value;
 
     if(document.getElementById("confirm_password") === null){
-        //valudate login form
-        // Kiểm tra nếu giá trị username hoặc password rỗng
+        //validate login form
         if (username === "" || password === "") {
             alert("Vui lòng nhập đầy đủ thông tin.");
         return false;
         }
-        // Kiểm tra nếu username hoặc password chứa ký tự đặc biệt trừ '_' và '-'
         var allow = /^[a-zA-Z0-9_-]+$/;
         if (!allow.test(username) || !allow.test(password)) {
             alert("Tên đăng nhập và mật khẩu không được chứa ký tự đặc biệt trừ '_' và '-'.");
             return false;
         }
     }else {
+        //validate register form
         const confirm_password = document.getElementById("confirm_password").value;
-        //valudate register form
-        // Kiểm tra nếu giá trị username password hoặc confirm password rỗng
         if (username === "" || password === "" || confirm_password ==="") {
             alert("Vui lòng nhập đầy đủ thông tin.");
         return false;
         }
-        // Kiểm tra nếu username hoặc password chứa ký tự đặc biệt trừ '_' và '-'
         var allow = /^[a-zA-Z0-9_-]+$/;
         if (!allow.test(username) || !allow.test(password) ||!allow.test(confirm_password)) {
             alert("Tên đăng nhập và mật khẩu không được chứa ký tự đặc biệt trừ '_' và '-'.");

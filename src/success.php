@@ -47,11 +47,13 @@
 		}
 	</style>
 <body>
-    <h1>Thông báo</h1>
-    <section>
-        <h2>Chào mừng đến với site này. </h2>
-        <h3><a href='http://localhost:8080/src/logout.php'>Đăng xuất</a></h3>
-    </section>";
+    <?php
+        echo "<h1>Thông báo</h1>
+        <section>
+            <h2>Chúc mừng ". $_SESSION["username"] . " đã đăng nhập thành công. </h2>
+            <h3><a href='http://localhost:8080/src/logout.php'>Đăng xuất</a></h3>
+        </section>";
+    ?>
 </body>
 </html>
 
